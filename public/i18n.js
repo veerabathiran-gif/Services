@@ -109,7 +109,29 @@ window.I18N = {
     mWhyLabel: "Why the numbers differ from the thesis:",
     mWhy: " this build re-trains only the clinical classifier, small enough to run in a phone browser, on data where 1 in 20 patients had a stroke, and reports it on held-out patients. The MRI and multimodal models need brain scans and are not part of this app.",
 
-    tabCheck: "Check", tabHow: "How it works", tabRes: "Research"
+   
+    tnBrand: "TAMIL NADU",
+    tnH1: "About 316 new strokes a day in Tamil Nadu",
+    tnLede: "Calculated from the ICMR National Stroke Registry's pooled crude incidence rate — 138.1 per 1,00,000 people — applied to a state population of about 8.36 crore.",
+    tnYear: "in a year", tnDay: "in a day", tnHour: "in an hour",
+    tnChartTitle: "Estimated new strokes a year in Tamil Nadu",
+    tnLakh: "lakh",
+    tnChartNote: "About 7% above 2021, tracking population growth and urban lifestyle change. These are estimates, not a state stroke count.",
+    tnWho: "WHO IT AFFECTS",
+    tnAge1: "Aged 18 to 44", tnAge1v: "14%", tnAge1d: "About 1 in 7 stroke patients — working-age adults in cities",
+    tnAge2: "Aged 45 and over", tnAge2v: "86%", tnAge2d: "Risk climbs sharply after 60",
+    tnMen: "Men", tnMenv: "58–60%", tnMend: "Smoking, alcohol and sustained work stress carry much of this",
+    tnWomen: "Women", tnWomenv: "40–42%", tnWomend: "Risk rises after menopause, with blood pressure the main driver",
+    tnRisk: "MAIN RISK FACTORS",
+    tnRisk1: "Uncontrolled high blood pressure", tnRisk1d: "Present in more than 70% of stroke cases",
+    tnRisk2: "Diabetes", tnRisk2d: "More than 1 in 10 urban adults; it weakens the blood vessels feeding the brain",
+    tnRisk3: "Obesity, cholesterol, little exercise", tnRisk3d: "Common findings in recent state public health surveys",
+    tnGoldTitle: "The golden hours — the first 4.5",
+    tnGoldBody: "Clot-dissolving treatment (thrombolysis) given within 3 to 4.5 hours of the first symptom prevents much of the damage. Face drooping, sudden weakness in an arm or leg, or slurred speech — go to hospital at once.",
+    tnSrc: "WHERE THE NUMBERS COME FROM",
+    tnSrcBody: "Incidence rate: ICMR National Stroke Registry Programme, five geographic areas of India, 2018–2019 — pooled crude rate 138.1 per 1,00,000, range 96.6 to 187.6. The Tamil Nadu figures are calculated from that rate, not measured in the state. Age, sex and risk-factor shares are compiled from ICMR and Tamil Nadu public health sources. Treat all of it as planning estimates.",
+    tabTn: "Tamil Nadu",
+ tabCheck: "Check", tabHow: "How it works", tabRes: "Research"
   },
 
   ta: {
@@ -220,6 +242,28 @@ window.I18N = {
     mWhyLabel: "Thesis எண்களை விட ஏன் குறைவு:",
     mWhy: " இந்த build மருத்துவ classifier-ஐ மட்டும், போன் browser-ல் ஓடும் அளவுக்கு சிறியதாக, 20-ல் 1 நோயாளிக்கு மட்டும் பக்கவாதம் இருந்த தரவில் மீண்டும் பயிற்சி செய்கிறது; முடிவுகள் model பார்க்காத நோயாளிகளின் மீது. MRI மற்றும் பன்முக model-களுக்கு மூளை ஸ்கேன் தேவை, அவை இந்த app-ல் இல்லை.",
 
-    tabCheck: "சோதனை", tabHow: "எப்படி", tabRes: "ஆராய்ச்சி"
+   
+    tnBrand: "தமிழ்நாடு",
+    tnH1: "தமிழ்நாட்டில் ஒரு நாளைக்கு சுமார் 316 புதிய பக்கவாதம்",
+    tnLede: "ICMR தேசிய பக்கவாதப் பதிவேட்டின் சராசரி விகிதம் — 1 லட்சம் பேருக்கு 138.1 — தமிழ்நாட்டின் சுமார் 8.36 கோடி மக்கள் தொகைக்கு பொருத்தி கணக்கிடப்பட்டது.",
+    tnYear: "ஒரு வருடத்தில்", tnDay: "ஒரு நாளைக்கு", tnHour: "ஒரு மணி நேரத்தில்",
+    tnChartTitle: "தமிழ்நாட்டில் ஆண்டுக்கு புதிய பக்கவாதம் (கணிப்பு)",
+    tnLakh: "லட்சம்",
+    tnChartNote: "2021-ஐ விட சுமார் 7% அதிகம். மக்கள் தொகை வளர்ச்சியும் நகர்ப்புற வாழ்க்கை முறையும் முக்கிய காரணம். இவை கணிப்புகள், அரசின் உண்மையான எண்ணிக்கை அல்ல.",
+    tnWho: "யாரை பாதிக்கிறது",
+    tnAge1: "18 முதல் 44 வயது", tnAge1v: "14%", tnAge1d: "ஏழு நோயாளிகளில் ஒருவர் — நகரங்களில் பணிபுரியும் வயதினர்",
+    tnAge2: "45 வயது மேல்", tnAge2v: "86%", tnAge2d: "60 வயதுக்கு மேல் ஆபத்து வேகமாக அதிகரிக்கிறது",
+    tnMen: "ஆண்கள்", tnMenv: "58–60%", tnMend: "புகைப்பழக்கம், மது, தொடர் பணிச்சுமை ஆகியவை முக்கிய காரணம்",
+    tnWomen: "பெண்கள்", tnWomenv: "40–42%", tnWomend: "மாதவிடாய் நின்ற பிறகு ஆபத்து அதிகரிக்கும்; ரத்த அழுத்தமே முதன்மைக் காரணம்",
+    tnRisk: "முக்கிய ஆபத்துக் காரணிகள்",
+    tnRisk1: "கட்டுப்படுத்தப்படாத உயர் ரத்த அழுத்தம்", tnRisk1d: "பக்கவாத வழக்குகளில் 70%-க்கும் மேல் இதுவே காரணம்",
+    tnRisk2: "சர்க்கரை நோய்", tnRisk2d: "நகர்ப்புற மக்களில் பத்தில் ஒருவருக்கு மேல்; மூளைக்கு செல்லும் ரத்த நாளங்களை பலவீனப்படுத்துகிறது",
+    tnRisk3: "உடல் பருமன், கொழுப்பு, உடற்பயிற்சி இன்மை", tnRisk3d: "சமீபத்திய தமிழ்நாடு பொது சுகாதார ஆய்வுகளில் பரவலாக காணப்படுகிறது",
+    tnGoldTitle: "தங்க நேரம் — முதல் 4.5 மணி",
+    tnGoldBody: "அறிகுறி தொடங்கிய 3 முதல் 4.5 மணி நேரத்திற்குள் ரத்த உறைவைக் கரைக்கும் சிகிச்சை (thrombolysis) கொடுத்தால், பாதிப்பை பெருமளவு தடுக்கலாம். முகம் கோணல், கை அல்லது கால் திடீர் பலவீனம், பேச்சு தடுமாற்றம் — உடனே மருத்துவமனைக்கு செல்லுங்கள்.",
+    tnSrc: "தரவு எங்கிருந்து",
+    tnSrcBody: "விகிதம்: ICMR தேசிய பக்கவாதப் பதிவேடு, இந்தியாவின் ஐந்து பகுதிகள், 2018–2019 — சராசரி 1 லட்சத்திற்கு 138.1, வரம்பு 96.6 முதல் 187.6 வரை. தமிழ்நாட்டு எண்கள் அந்த விகிதத்தில் இருந்து கணக்கிடப்பட்டவை; மாநிலத்தில் நேரடியாக அளக்கப்பட்டவை அல்ல. வயது, பாலினம், ஆபத்துக் காரணி சதவீதங்கள் ICMR மற்றும் தமிழ்நாடு பொது சுகாதாரத் தரவுகளில் இருந்து தொகுக்கப்பட்டவை. இவை அனைத்தையும் கணிப்புகளாகவே கருதவும்.",
+    tabTn: "தமிழ்நாடு",
+ tabCheck: "சோதனை", tabHow: "எப்படி", tabRes: "ஆராய்ச்சி"
   }
 };

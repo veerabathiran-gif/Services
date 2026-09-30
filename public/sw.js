@@ -1,5 +1,5 @@
 /* Offline cache for Early Stroke Predictor */
-const CACHE = "stroke-predictor-v4";
+const CACHE = "stroke-predictor-v5";
 const ASSETS = [
   "./", "./index.html", "./styles.css", "./app.js", "./model.js", "./i18n.js", "./manifest.webmanifest",
   "./fonts/manrope.woff2", "./fonts/catamaran-tamil.woff2", "./fonts/jbmono-400.woff2", "./fonts/jbmono-600.woff2",

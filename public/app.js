@@ -341,6 +341,48 @@
       <p class="small"><b>${T("mWhyLabel")}</b>${T("mWhy")}</p>`;
   }
 
+  /* ---------------- Tamil Nadu trend chart ---------------- */
+  const TN_SERIES = [
+    { year: 2021, cases: 108000 }, { year: 2022, cases: 110000 },
+    { year: 2023, cases: 112000 }, { year: 2024, cases: 113500 },
+    { year: 2025, cases: 114500 }, { year: 2026, cases: 115450 },
+  ];
+  function drawTN() {
+    const host = $("#tnChart");
+    if (!host) return;
+    const L = 40, R = 326, TOP = 16, BOT = 162;      // plot box inside a 340 x 190 frame
+    const LO = 100000, HI = 120000;                   // axis floor is not zero; every tick is labelled
+    const x = (i) => L + (i * (R - L)) / (TN_SERIES.length - 1);
+    const y = (v) => BOT - ((v - LO) / (HI - LO)) * (BOT - TOP);
+    const inr = (n) => n.toLocaleString("en-IN");
+    const ticks = [100000, 105000, 110000, 115000, 120000];
+
+    const grid = ticks.map((t) =>
+      `<line class="grid" x1="${L}" x2="${R}" y1="${y(t).toFixed(1)}" y2="${y(t).toFixed(1)}"/>` +
+      `<text class="axis" x="${L - 6}" y="${(y(t) + 3).toFixed(1)}" text-anchor="end">${(t / 100000).toFixed(2)}</text>`
+    ).join("");
+    const path = TN_SERIES.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(d.cases).toFixed(1)}`).join(" ");
+    const dots = TN_SERIES.map((d, i) =>
+      `<circle class="dot" cx="${x(i).toFixed(1)}" cy="${y(d.cases).toFixed(1)}" r="4"><title>${d.year}: ${inr(d.cases)}</title></circle>`
+    ).join("");
+    const years = TN_SERIES.map((d, i) =>
+      `<text class="axis" x="${x(i).toFixed(1)}" y="${BOT + 18}" text-anchor="middle">${d.year}</text>`
+    ).join("");
+    const first = TN_SERIES[0], lastPt = TN_SERIES[TN_SERIES.length - 1];
+    const labels =
+      `<text class="val" x="${L}" y="${(y(first.cases) - 12).toFixed(1)}" text-anchor="start">${inr(first.cases)}</text>` +
+      `<text class="val" x="${R}" y="${(y(lastPt.cases) - 12).toFixed(1)}" text-anchor="end">${inr(lastPt.cases)}</text>`;
+    const rows = TN_SERIES.map((d) => `<tr><td>${d.year}</td><td>${inr(d.cases)}</td></tr>`).join("");
+
+    host.innerHTML =
+      `<svg class="tn-svg" viewBox="0 0 340 190" role="img" aria-label="${T("tnChartTitle")}">` +
+      `<text class="cap" x="0" y="10">${T("tnLakh")}</text>` +
+      grid + years +
+      `<path class="ln" d="${path}"/>` + dots + labels +
+      `</svg>` +
+      `<div class="sr-only"><table><caption>${T("tnChartTitle")}</caption><tbody>${rows}</tbody></table></div>`;
+  }
+
   /* ---------------- apply a language ---------------- */
   function applyLang(next) {
     LANG = next;
@@ -351,6 +393,7 @@
     $$(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.lang === next));
     setGlu(state.glu); setBmi(state.bmi);
     renderMetrics();
+    drawTN();
     if (last) render(last.inp, last.out, false);
   }
   $$(".lang button").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
