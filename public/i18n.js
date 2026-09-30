@@ -92,7 +92,7 @@ window.I18N = {
     step6p: "Squashes the result into 0–1. Near 0 is low risk, near 1 is high risk.",
 
     resBrand: "THE RESEARCH",
-    resLede: "Ph.D. thesis · <b>Mrs. Durga Devi P</b>, Dept. of CSE, SRMIST Vadapalani Campus, Chennai · Supervised by <b>Dr. K. Akila</b> · Viva-voce 20 Feb 2026",
+    resLede: "Ph.D. thesis · <b>Mrs. Dr. Durga Devi P</b>, Dept. of CSE, SRMIST Vadapalani Campus, Chennai · Supervised by <b>Dr. K. Akila</b> · Viva-voce 20 Feb 2026",
     resReported: "REPORTED IN THE THESIS",
     obj1: "Objective 1 · Clinical", obj1d: "SSC-AE feature reduction + attention-based neural network, accuracy",
     obj2: "Objective 2 · MRI", obj2d: "SAZO-AMRN segmentation (Dice 91.5%) + MResLSTM-SAN, accuracy",
@@ -203,7 +203,7 @@ window.I18N = {
     step6p: "முடிவை 0–1 வரம்பில் அடக்கும். 0-க்கு அருகில் குறைவான ஆபத்து, 1-க்கு அருகில் அதிக ஆபத்து.",
 
     resBrand: "ஆராய்ச்சி",
-    resLede: 'முனைவர் பட்ட ஆய்வு · <b>திருமதி. துர்கா தேவி P</b>, CSE துறை, SRMIST வடபழனி வளாகம், சென்னை · வழிகாட்டி <b>முனைவர் K. அகிலா</b> · வாய்மொழித் தேர்வு 20 பிப்ரவரி 2026',
+    resLede: 'முனைவர் பட்ட ஆய்வு · <b>திருமதி. முனைவர். துர்கா தேவி P</b>, CSE துறை, SRMIST வடபழனி வளாகம், சென்னை · வழிகாட்டி <b>முனைவர் K. அகிலா</b> · வாய்மொழித் தேர்வு 20 பிப்ரவரி 2026',
     resReported: "THESIS-ல் பதிவான முடிவுகள்",
     obj1: "நோக்கம் 1 · மருத்துவ தரவு", obj1d: "SSC-AE காரணி குறைப்பு + attention neural network, துல்லியம்",
     obj2: "நோக்கம் 2 · MRI", obj2d: "SAZO-AMRN பிரிப்பு (Dice 91.5%) + MResLSTM-SAN, துல்லியம்",
