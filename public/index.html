@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Early Stroke Predictor</title>
+<meta name="description" content="Early stroke risk check using an attention-based neural network on six clinical features. Research demonstration.">
+<meta name="theme-color" content="#14100A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stroke Predictor">
+<link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ ASSESS ============ -->
+  <section class="screen active" id="screen-assess" aria-labelledby="h-assess">
+    <header class="top">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-opacity=".35"/><path d="M3 17h6l2.5-6 4 12 3.5-9 2 3H29" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-t="brand">EARLY STROKE PREDICTOR</span>
+      </div>
+      <div class="top-right">
+        <button class="install-btn" id="installBtn" data-t="install" hidden>Install app</button>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" lang="en">EN</button>
+          <button type="button" data-lang="ta" lang="ta">தமிழ்</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h1 id="h-assess" data-t="assessH1">Clinical risk check</h1>
+      <p class="lede" data-t="assessLede">Six clinical factors, selected by SSC-AE feature reduction, scored by an attention-based neural network that runs on this device.</p>
+    </div>
+
+    <div class="samples" role="group" aria-label="Load a sample patient">
+      <span class="mono-label" data-t="trySample">TRY A SAMPLE</span>
+      <div class="sample-row">
+        <button class="sample" data-sample="0" data-t="sample0">Healthy adult</button>
+        <button class="sample" data-sample="1" data-t="sample1">Hypertensive smoker</button>
+        <button class="sample" data-sample="2" data-t="sample2">Cardiac, high glucose</button>
+      </div>
+    </div>
+
+    <form id="form" novalidate>
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">01</span><span class="card-title" data-t="fHyp">Hypertension</span></legend>
+        <p class="hint" data-t="fHypHint">Diagnosed high blood pressure</p>
+        <div class="seg" data-field="hyp">
+          <button type="button" data-v="0" class="on" data-t="no">No</button>
+          <button type="button" data-v="1" data-t="yes">Yes</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">02</span><span class="card-title" data-t="fHeart">Heart disease</span></legend>
+        <p class="hint" data-t="fHeartHint">Any diagnosed heart condition</p>
+        <div class="seg" data-field="heart">
+          <button type="button" data-v="0" class="on" data-t="no">No</button>
+          <button type="button" data-v="1" data-t="yes">Yes</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">03</span><span class="card-title" data-t="fWork">Work type</span></legend>
+        <div class="chips" data-field="work">
+          <button type="button" data-v="0" class="on" data-t="work0">Private</button>
+          <button type="button" data-v="1" data-t="work1">Self-employed</button>
+          <button type="button" data-v="2" data-t="work2">Government</button>
+          <button type="button" data-v="3" data-t="work3">Child</button>
+          <button type="button" data-v="4" data-t="work4">Never worked</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">04</span><span class="card-title" data-t="fGlu">Average glucose level</span></legend>
+        <div class="readout">
+          <input class="big-num" id="gluNum" type="number" inputmode="decimal" min="55" max="272" step="0.1" value="95" aria-label="Average glucose level in mg/dL">
+          <span class="unit">mg/dL</span>
+          <span class="tag" id="gluTag">Typical</span>
+        </div>
+        <input class="range" id="gluRange" type="range" min="55" max="272" step="0.5" value="95" aria-label="Average glucose level slider">
+        <div class="ticks"><span>55</span><span>140</span><span>200</span><span>272</span></div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">05</span><span class="card-title" data-t="fBmi">Body mass index</span></legend>
+        <div class="readout">
+          <input class="big-num" id="bmiNum" type="number" inputmode="decimal" min="10.3" max="97.6" step="0.1" value="24" aria-label="Body mass index">
+          <span class="unit">kg/m²</span>
+          <span class="tag" id="bmiTag">Healthy</span>
+        </div>
+        <input class="range" id="bmiRange" type="range" min="12" max="60" step="0.1" value="24" aria-label="BMI slider">
+        <div class="ticks"><span>12</span><span>25</span><span>40</span><span>60</span></div>
+        <div class="bmi-tools">
+          <label class="switch"><input type="checkbox" id="bmiUnknown"><span class="track"></span><span data-t="bmiUnknown">Not known — use mean imputation</span></label>
+          <button type="button" class="link-btn" id="bmiCalcToggle" data-t="bmiCalc" aria-expanded="false">Calculate from height &amp; weight</button>
+        </div>
+        <div class="bmi-calc" id="bmiCalc" hidden>
+          <label><span data-t="height">Height</span><span class="field"><input id="hCm" type="number" inputmode="decimal" placeholder="165"><em>cm</em></span></label>
+          <label><span data-t="weight">Weight</span><span class="field"><input id="wKg" type="number" inputmode="decimal" placeholder="68"><em>kg</em></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend class="card-head"><span class="num">06</span><span class="card-title" data-t="fSmoke">Smoking status</span></legend>
+        <div class="chips" data-field="smoke">
+          <button type="button" data-v="0" class="on" data-t="smoke0">Never</button>
+          <button type="button" data-v="1" data-t="smoke1">Former</button>
+          <button type="button" data-v="2" data-t="smoke2">Current</button>
+          <button type="button" data-v="3" data-t="smoke3">Unknown</button>
+        </div>
+      </fieldset>
+
+      <p class="fine" data-t="assessFine">Research demonstration only. Not a diagnosis and not a substitute for a doctor.</p>
+      <div class="cta-wrap"><button type="submit" class="cta"><span data-t="cta">Predict risk</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    </form>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section class="screen" id="screen-result" aria-labelledby="h-result">
+    <header class="top">
+      <button class="back" id="backBtn" aria-label="Edit inputs"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="editInputs">Edit inputs</span></button>
+      <button class="icon-btn" id="shareBtn" aria-label="Share result"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </header>
+
+    <h1 class="sr-only" id="h-result">Your result</h1>
+    <div class="gauge-wrap">
+      <svg class="gauge" viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+          <linearGradient id="gGrad" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="200" y2="0">
+            <stop offset="0" stop-color="#FFD23F"/><stop offset=".5" stop-color="#FF8A2B"/><stop offset="1" stop-color="#E8202A"/>
+          </linearGradient>
+        </defs>
+        <path d="M49.29 190.71 A100 100 0 1 1 190.71 190.71" pathLength="100" class="g-track"/>
+        <path d="M49.29 190.71 A100 100 0 1 1 190.71 190.71" pathLength="100" class="g-fill" id="gFill"/>
+        <g id="gTicks"></g>
+      </svg>
+      <div class="gauge-center">
+        <div class="score" id="score">0</div>
+        <div class="score-sub" data-t="scoreSub">RISK SCORE / 100</div>
+        <div class="band" id="band">—</div>
+      </div>
+    </div>
+    <p class="band-copy" id="bandCopy"></p>
+
+    <div class="card">
+      <div class="card-head flat"><span class="card-title" data-t="attTitle">What the model focused on</span></div>
+      <p class="hint" data-t="attHint">Attention weight αᵢ the network gave each factor for this person. They sum to 100%.</p>
+      <ol class="att" id="attList"></ol>
+    </div>
+
+    <details class="card trace">
+      <summary><span class="card-title" data-t="traceTitle">Inside the network</span><span class="mono-label" data-t="traceLabel">STEP-BY-STEP</span></summary>
+      <div id="trace"></div>
+    </details>
+
+    <a class="fast" href="tel:108">
+      <div>
+        <strong data-t="fastTitle">Stroke signs? Act FAST.</strong>
+        <span data-th="fastLine">Face drooping · Arm weakness · Speech difficulty · Time to call <b>108</b></span>
+      </div>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="fine" data-t="resultFine">This score comes from a small research model with modest accuracy (see Research tab). It cannot rule a stroke in or out. Talk to a doctor about your risk.</p>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="screen" id="screen-how" aria-labelledby="h-how">
+    <header class="top">
+      <div class="brand"><span data-t="howBrand">HOW IT WORKS</span></div>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="ta" lang="ta">தமிழ்</button>
+      </div>
+    </header>
+    <div class="hero"><h1 id="h-how" data-t="howH1">From ten features to one probability</h1>
+    <p class="lede" data-th="howLede">The clinical pipeline from the thesis. Steps marked <span class="live">LIVE</span> run on your phone every time you press Predict.</p></div>
+
+    <ol class="pipe">
+      <li>
+        <div class="pipe-num">1</div>
+        <div class="pipe-body">
+          <h3 data-t="step1">Input</h3>
+          <p data-t="step1p">Stroke Prediction dataset: 10 clinical features plus the stroke label — gender, age, hypertension, heart disease, ever married, work type, residence, glucose, BMI, smoking.</p>
+        </div>
+      </li>
+      <li>
+        <div class="pipe-num">2</div>
+        <div class="pipe-body">
+          <h3 data-th="step2">Preprocessing <span class="live">LIVE</span></h3>
+          <p data-t="step2p">Missing values filled by mean imputation; numeric features scaled to 0–1.</p>
+          <code>x_imputed = (x₁ + x₂ + … + xₙ) / n</code>
+          <code>x_scaled = (x − x_min) / (x_max − x_min)</code>
+        </div>
+      </li>
+      <li>
+        <div class="pipe-num">3</div>
+        <div class="pipe-body">
+          <h3 data-t="step3">Feature reduction · SSC-AE</h3>
+          <p data-t="step3p">A Sparse Subspace Clustering Autoencoder groups related features and keeps the informative ones.</p>
+          <code>L = λ‖W‖₁ + ‖X − WZ‖²₂</code>
+          <code>A = |Z| + |Zᵀ|</code>
+          <div class="clusters">
+            <div class="cl keep"><b data-t="cl1">Stroke-dominant</b><span data-t="cl1s">Hypertension · Glucose · Heart disease</span></div>
+            <div class="cl keep"><b data-t="cl2">Lifestyle</b><span data-t="cl2s">BMI · Work type · Smoking</span></div>
+            <div class="cl drop"><b data-t="cl3">Neutral (dropped)</b><span data-t="cl3s">Gender · Age · Ever married · Residence</span></div>
+          </div>
+          <p class="note" data-t="step3note">10 features → 6. This app uses those 6 directly.</p>
+        </div>
+      </li>
+      <li>
+        <div class="pipe-num">4</div>
+        <div class="pipe-body">
+          <h3 data-th="step4">Attention layer <span class="live">LIVE</span></h3>
+          <p data-t="step4p">Each factor gets an importance weight for this particular person.</p>
+          <code>eᵢ = tanh(W·xᵢ + b)</code>
+          <code>αᵢ = exp(eᵢ) / Σⱼ exp(eⱼ)</code>
+          <code>Z = Σ αᵢ · xᵢ</code>
+        </div>
+      </li>
+      <li>
+        <div class="pipe-num">5</div>
+        <div class="pipe-body">
+          <h3 data-th="step5">Hidden layer · ReLU <span class="live">LIVE</span></h3>
+          <p data-t="step5p">Learns interactions between the weighted factors.</p>
+          <code>h = ReLU(W₁·Z + b₁)</code>
+          <code>ReLU(x) = max(0, x)</code>
+        </div>
+      </li>
+      <li>
+        <div class="pipe-num">6</div>
+        <div class="pipe-body">
+          <h3 data-th="step6">Output · Sigmoid <span class="live">LIVE</span></h3>
+          <p data-t="step6p">Squashes the result into 0–1. Near 0 is low risk, near 1 is high risk.</p>
+          <code>y = 1 / (1 + e^−(W₂·h + b₂))</code>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section class="screen" id="screen-research" aria-labelledby="h-research">
+    <header class="top">
+      <div class="brand"><span data-t="resBrand">THE RESEARCH</span></div>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="ta" lang="ta">தமிழ்</button>
+      </div>
+    </header>
+    <div class="hero">
+      <h1 id="h-research" lang="en">Enhanced Early Prediction Framework for Stroke using Deep Learning Algorithms</h1>
+      <p class="lede" data-th="resLede">Ph.D. thesis · <b>Mrs. Durga Devi P</b>, Dept. of CSE, SRMIST Vadapalani Campus, Chennai · Supervised by <b>Dr. K. Akila</b> · Viva-voce 20 Feb 2026</p>
+    </div>
+
+    <div class="mono-label pad" data-t="resReported">REPORTED IN THE THESIS</div>
+    <div class="objs">
+      <div class="obj">
+        <div class="obj-k" data-t="obj1">Objective 1 · Clinical</div>
+        <div class="obj-v">92<small>%</small></div>
+        <div class="obj-d" data-t="obj1d">SSC-AE feature reduction + attention-based neural network, accuracy</div>
+      </div>
+      <div class="obj">
+        <div class="obj-k" data-t="obj2">Objective 2 · MRI</div>
+        <div class="obj-v">95.8<small>%</small></div>
+        <div class="obj-d" data-t="obj2d">SAZO-AMRN segmentation (Dice 91.5%) + MResLSTM-SAN, accuracy</div>
+      </div>
+      <div class="obj">
+        <div class="obj-k" data-t="obj3">Objective 3 · Multimodal</div>
+        <div class="obj-v">98.75<small>%</small></div>
+        <div class="obj-d" data-t="obj3d">Attention fusion of clinical + MRI features, accuracy (AUC 0.98)</div>
+      </div>
+    </div>
+
+    <div class="mono-label pad" data-t="resThisApp">THIS APP'S MODEL</div>
+    <div class="card" id="metricsCard"></div>
+
+    <div class="mono-label pad" data-t="resPubs">PUBLICATIONS</div>
+    <ul class="pubs" lang="en">
+      <li><b>Multimodal Deep Learning Approach for Early Ischemic Brain Stroke Prediction</b><span>Int. J. of Intelligent Information and Database Systems, 18(1), 2026 · Scopus</span></li>
+      <li><b>A novel MRI Image-analyzed Stroke Prediction Framework using Multiscale Residual LSTM with Spatial Attention Network</b><span>Biomedical Signal Processing and Control, July 2025 · SCI, IF 4.9</span></li>
+      <li><b>Feature Reduction and Stroke Prediction using Sparse Subspace Clustering Autoencoder on Clinical Data</b><span>J. of Theoretical and Applied Information Technology, Dec 2024 · Scopus</span></li>
+      <li><b>Unveiling Hidden Patterns: Exploration of Data Dependencies in Disease Prediction</b><span>IEEE Conference, Jan 2024 · Scopus</span></li>
+      <li><b>Development of a Multimodal Stroke Diagnosis System Using MRI and Clinical Data</b><span>Patent published, March 2024</span></li>
+    </ul>
+    <p class="fine" data-t="resFine">Research demonstration. Not a medical device. Predictions are not a diagnosis.</p>
+  </section>
+
+  <!-- ============ TAB BAR ============ -->
+  <nav class="tabs" aria-label="Main">
+    <button class="tab on" data-go="assess"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="tabCheck">Check</span></button>
+    <button class="tab" data-go="how"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="5" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="19" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 7l10 4M7 17l10-4" stroke="currentColor" stroke-width="2"/></svg><span data-t="tabHow">How it works</span></button>
+    <button class="tab" data-go="research"><svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v16H5.5A1.5 1.5 0 014 18.5zM20 5.5A1.5 1.5 0 0018.5 4H13v16h5.5a1.5 1.5 0 001.5-1.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-t="tabRes">Research</span></button>
+  </nav>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="model.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
